@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 import com.ettawil.applice.model.entity.article.Article;
 import com.ettawil.applice.model.entity.user.User;
@@ -25,6 +28,7 @@ public class Approvisionnement {
 	Article article;
 	int nombre;
 	String type;
+	@Temporal(TemporalType.DATE)
 	Date dateAppro;
 	BigDecimal montantTotal;
 	BigDecimal montantSigne;
@@ -118,7 +122,7 @@ public class Approvisionnement {
 		this.montantTotal = montantTotal;
 	}
 
-	@Column(name = "APPRO_MNT_SIG", nullable = false)
+	@Column(name = "APPRO_MNT_SIG", nullable = true)
 	public BigDecimal getMontantSigne() {
 		return montantSigne;
 	}
@@ -127,7 +131,7 @@ public class Approvisionnement {
 		this.montantSigne = montantSigne;
 	}
 
-	@Column(name = "APPRO_QTE_SIGN", nullable = false)
+	@Column(name = "APPRO_QTE_SIG", nullable = false)
 	public int getQuantite() {
 		return quantite;
 	}
@@ -136,7 +140,7 @@ public class Approvisionnement {
 		this.quantite = quantite;
 	}
 
-	@Column(name = "APPRO_COM", nullable = false)
+	@Column(name = "APPRO_COM", nullable = true)
 	public String getCommentaire() {
 		return commentaire;
 	}

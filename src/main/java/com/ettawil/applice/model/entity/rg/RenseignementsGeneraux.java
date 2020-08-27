@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class RenseignementsGeneraux {
 
 	int ageEnfant;
-	Date dateAnciennente;
+	Date dateAnciennete;
 
 	public RenseignementsGeneraux() {
 		super();
@@ -21,7 +21,7 @@ public class RenseignementsGeneraux {
 	public RenseignementsGeneraux(int ageEnfant, Date dateAnciennente) {
 		super();
 		this.ageEnfant = ageEnfant;
-		this.dateAnciennente = dateAnciennente;
+		this.dateAnciennete = dateAnciennente;
 	}
 
 	@Id
@@ -35,12 +35,12 @@ public class RenseignementsGeneraux {
 	}
 
 	@Column(name = "RG_DAT_ANC", nullable = false)
-	public Date getDateAnciennente() {
-		return dateAnciennente;
+	public Date getDateAnciennete() {
+		return dateAnciennete;
 	}
 
-	public void setDateAnciennente(Date dateAnciennente) {
-		this.dateAnciennente = dateAnciennente;
+	public void setDateAnciennete(Date dateAnciennente) {
+		this.dateAnciennete = dateAnciennente;
 	}
 
 }

@@ -4,23 +4,30 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.ettawil.applice.model.entity.contrat.TypeContrat;
 
 @Entity
 @Table(name = "CE_SAL")
-public class Salarie {
+public class Salarie  {
 
 	int code;
 	String lastName;
 	String firstName;
 	Date dateEntree;
 	Date dateSortie;
-	boolean plaond = false;
+	boolean plafond = false;
 	// Type contrat
-	String typeContrat;
+	TypeContrat typeContrat;
 	String sexe;
 	boolean actif;
 
@@ -29,15 +36,15 @@ public class Salarie {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Salarie(int code, String lastName, String firstName, Date dateEntree, Date dateSortie, boolean plaond,
-			String typeContrat, String sexe, boolean actif) {
+	public Salarie(int code, String lastName, String firstName, Date dateEntree, Date dateSortie, boolean plafond,
+			TypeContrat typeContrat, String sexe, boolean actif) {
 		super();
 		this.code = code;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
-		this.plaond = plaond;
+		this.plafond = plafond;
 		this.typeContrat = typeContrat;
 		this.sexe = sexe;
 		this.actif = actif;
@@ -73,6 +80,7 @@ public class Salarie {
 	}
 
 	@Column(name = "SAL_DAT_ENT", nullable = false)
+	@DateTimeFormat(pattern =  "dd/MM/yyyy")
 	public Date getDateEntree() {
 		return dateEntree;
 	}
@@ -81,7 +89,7 @@ public class Salarie {
 		this.dateEntree = dateEntree;
 	}
 
-	@Column(name = "SAL_DAT_SOR", nullable = false)
+	@Column(name = "SAL_DAT_SOR", nullable = true)
 	public Date getDateSortie() {
 		return dateSortie;
 	}
@@ -91,20 +99,21 @@ public class Salarie {
 	}
 
 	@Column(name = "SAL_PLA", nullable = false)
-	public boolean isPlaond() {
-		return plaond;
+	public boolean isPlafond() {
+		return plafond;
 	}
 
-	public void setPlaond(boolean plaond) {
-		this.plaond = plaond;
+	public void setPlafond(boolean plafond) {
+		this.plafond = plafond;
 	}
 
-	@Column(name = "TYPCON_COD", nullable = false)
-	public String getTypeContrat() {
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "TYPCON_COD", nullable = false)
+	public TypeContrat getTypeContrat() {
 		return typeContrat;
 	}
 
-	public void setTypeContrat(String typeContrat) {
+	public void setTypeContrat(TypeContrat typeContrat) {
 		this.typeContrat = typeContrat;
 	}
 
@@ -125,5 +134,6 @@ public class Salarie {
 	public void setActif(boolean actif) {
 		this.actif = actif;
 	}
+
 
 }

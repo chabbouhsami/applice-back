@@ -5,7 +5,7 @@ import java.sql.Date;
 public class RenseignementsGenerauxDTO {
 
 	int ageEnfant;
-	Date dateAnciennente;
+	Date dateAnciennete;
 
 	public RenseignementsGenerauxDTO() {
 		super();
@@ -14,7 +14,7 @@ public class RenseignementsGenerauxDTO {
 	public RenseignementsGenerauxDTO(int ageEnfant, Date dateAnciennente) {
 		super();
 		this.ageEnfant = ageEnfant;
-		this.dateAnciennente = dateAnciennente;
+		this.dateAnciennete = dateAnciennente;
 	}
 
 	public int getAgeEnfant() {
@@ -25,12 +25,12 @@ public class RenseignementsGenerauxDTO {
 		this.ageEnfant = ageEnfant;
 	}
 
-	public Date getDateAnciennente() {
-		return dateAnciennente;
+	public Date getDateAnciennete() {
+		return dateAnciennete;
 	}
 
-	public void setDateAnciennente(Date dateAnciennente) {
-		this.dateAnciennente = dateAnciennente;
+	public void setDateAnciennete(Date dateAnciennente) {
+		this.dateAnciennete = dateAnciennente;
 	}
 
 }

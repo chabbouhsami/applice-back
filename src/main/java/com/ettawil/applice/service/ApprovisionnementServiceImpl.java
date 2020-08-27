@@ -1,6 +1,7 @@
 package com.ettawil.applice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,29 +24,15 @@ public class ApprovisionnementServiceImpl implements IApprovisionnementService {
 	}
 
 	@Override
-	public Approvisionnement updateApprovisionnement(Approvisionnement approvisionnement) {
-		return approvisionnementDao.save(approvisionnement);
-	}
-
-	@Override
-	public Approvisionnement deleteApprovisionnement(Approvisionnement approvisionnement) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Approvisionnement findApprovisionnement(int approvisionnement) {
-		return approvisionnementDao.getOne(approvisionnement);
-	}
-
-	@Override
-	public boolean checkIfExist(Approvisionnement approvisionnement) {
-		return approvisionnementDao.existsById(approvisionnement.getCode());
-	}
-
-	@Override
 	public List<Approvisionnement> findAll() {
 		return approvisionnementDao.findAll();
 	}
+	
+	public Optional<Approvisionnement> findByCode(int code){
+		return approvisionnementDao.findById(code);
+	}
 
+	public List<Approvisionnement> findAllByCodeOrderByDateAppro(int code){
+		return approvisionnementDao.findLastByArticleCodeOrderByDateApproDesc(code);
+	}
 }

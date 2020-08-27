@@ -1,5 +1,6 @@
 package com.ettawil.applice.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,9 +63,10 @@ public class TypeContratRestController {
 
 		if (!CollectionUtils.isEmpty(typeContrats)) {
 
-			List<TypeContratDTO> typeContratsDto = typeContrats.stream().map(typeContrat -> {
-				return mapTypeContratToTypeContratDTO(typeContrat);
-			}).collect(Collectors.toList());
+			List<TypeContratDTO> typeContratsDto = typeContrats.stream()
+					.sorted(Comparator.comparing(TypeContrat::getLibelle)).map(typeContrat -> {
+						return mapTypeContratToTypeContratDTO(typeContrat);
+					}).collect(Collectors.toList());
 			return new ResponseEntity<List<TypeContratDTO>>(typeContratsDto, HttpStatus.OK);
 		}
 		return new ResponseEntity<List<TypeContratDTO>>(HttpStatus.NO_CONTENT);

@@ -81,7 +81,7 @@ public class SalarieMaj {
 		this.dateEntree = dateEntree;
 	}
 
-	@Column(name = "SAL_DAT_SOR_MAJ", nullable = false)
+	@Column(name = "SAL_DAT_SOR_MAJ", nullable = true)
 	public Date getDateSortie() {
 		return dateSortie;
 	}

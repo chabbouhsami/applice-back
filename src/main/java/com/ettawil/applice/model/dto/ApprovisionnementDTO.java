@@ -7,7 +7,6 @@ import com.ettawil.applice.model.entity.article.Article;
 import com.ettawil.applice.model.entity.user.User;
 
 public class ApprovisionnementDTO {
-
 	int code;
 	User user;
 	Article article;
@@ -118,5 +117,4 @@ public class ApprovisionnementDTO {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-
 }

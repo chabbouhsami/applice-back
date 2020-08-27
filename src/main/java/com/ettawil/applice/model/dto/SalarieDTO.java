@@ -9,9 +9,9 @@ public class SalarieDTO {
 	String firstName;
 	Date dateEntree;
 	Date dateSortie;
-	boolean plaond = false;
+	boolean plafond = false;
 	// Type contrat
-	String typeContrat;
+	TypeContratDTO typeContrat;
 	String sexe;
 	boolean actif;
 
@@ -20,15 +20,15 @@ public class SalarieDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SalarieDTO(int code, String lastName, String firstName, Date dateEntree, Date dateSortie, boolean plaond,
-			String typeContrat, String sexe, boolean actif) {
+	public SalarieDTO(int code, String lastName, String firstName, Date dateEntree, Date dateSortie, boolean plafond,
+			TypeContratDTO typeContrat, String sexe, boolean actif) {
 		super();
 		this.code = code;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
-		this.plaond = plaond;
+		this.plafond = plafond;
 		this.typeContrat = typeContrat;
 		this.sexe = sexe;
 		this.actif = actif;
@@ -74,19 +74,19 @@ public class SalarieDTO {
 		this.dateSortie = dateSortie;
 	}
 
-	public boolean isPlaond() {
-		return plaond;
+	public boolean isPlafond() {
+		return plafond;
 	}
 
-	public void setPlaond(boolean plaond) {
-		this.plaond = plaond;
+	public void setPlafond(boolean plafond) {
+		this.plafond = plafond;
 	}
 
-	public String getTypeContrat() {
+	public TypeContratDTO getTypeContratDTO() {
 		return typeContrat;
 	}
 
-	public void setTypeContrat(String typeContrat) {
+	public void setTypeContratDTO(TypeContratDTO typeContrat) {
 		this.typeContrat = typeContrat;
 	}
 

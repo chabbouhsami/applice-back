@@ -1,5 +1,8 @@
 package com.ettawil.applice.controller;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,16 +37,18 @@ public class RGRestController {
 	@Autowired
 	private RenseignementsGenerauxServiceImpl rgService;
 
+	@CrossOrigin
 	@GetMapping("")
 	@ApiOperation(value = "Search the RG ", response = RenseignementsGenerauxDTO.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Not Found: the RenseignementsGeneraux doesn't exist") })
 	public ResponseEntity<RenseignementsGenerauxDTO> searchRenseignementsGenerauxByCode() {
-		RenseignementsGeneraux rg = rgService.findRenseignementsGeneraux();
-		if (rg != null) {
-			RenseignementsGenerauxDTO rgDTO = mapRenseignementsGenerauxToRenseignementsGenerauxDTO(rg);
+		List<RenseignementsGeneraux> rg = rgService.findRenseignementsGeneraux();
+		if (!rg.isEmpty()) {
+			RenseignementsGenerauxDTO rgDTO = mapRenseignementsGenerauxToRenseignementsGenerauxDTO(rg.get(0));
 			return new ResponseEntity<>(rgDTO, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<RenseignementsGenerauxDTO>(new RenseignementsGenerauxDTO(0, new Date(0)),
+				HttpStatus.OK);
 	}
 
 	@CrossOrigin
@@ -53,8 +58,8 @@ public class RGRestController {
 			@ApiResponse(code = 304, message = "RenseignementsGeneraux not added") })
 	public ResponseEntity<RenseignementsGenerauxDTO> createNewRenseignementsGeneraux(
 			@RequestBody RenseignementsGenerauxDTO rgDTORequest) {
-		RenseignementsGeneraux rg = rgService.findRenseignementsGeneraux();
-		if (rg != null) {
+		List<RenseignementsGeneraux> rg = rgService.findRenseignementsGeneraux();
+		if (!rg.isEmpty()) {
 			return updateRenseignementsGeneraux(rgDTORequest);
 		}
 		RenseignementsGeneraux rgRequest = mapRenseignementsGenerauxDTOToRenseignementsGeneraux(rgDTORequest);
@@ -75,23 +80,6 @@ public class RGRestController {
 			return new ResponseEntity<RenseignementsGenerauxDTO>(rgDTO, HttpStatus.OK);
 		}
 		return new ResponseEntity<RenseignementsGenerauxDTO>(HttpStatus.NOT_MODIFIED);
-	}
-
-	@CrossOrigin
-	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete RenseignementsGeneraux", response = RenseignementsGenerauxDTO.class)
-	@ApiResponses(value = { @ApiResponse(code = 404, message = "RenseignementsGeneraux not found"),
-			@ApiResponse(code = 200, message = "RenseignementsGeneraux successfully deleted"),
-			@ApiResponse(code = 304, message = "RenseignementsGeneraux unsuccesully deleted") })
-	public ResponseEntity<RenseignementsGenerauxDTO> deleteRenseignementsGeneraux(@PathVariable int id) {
-		RenseignementsGeneraux rg = rgService.findRenseignementsGeneraux();
-
-		if (rg != null) {
-			return new ResponseEntity<RenseignementsGenerauxDTO>(HttpStatus.NOT_FOUND);
-		}
-		rgService.deleteRenseignementGeneraux(rg);
-		return new ResponseEntity<RenseignementsGenerauxDTO>(mapRenseignementsGenerauxToRenseignementsGenerauxDTO(rg),
-				HttpStatus.OK);
 	}
 
 	private RenseignementsGeneraux mapRenseignementsGenerauxDTOToRenseignementsGeneraux(RenseignementsGenerauxDTO rg) {

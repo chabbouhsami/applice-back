@@ -34,7 +34,7 @@ public class AppliceApplication {
 			}
 		};
 	}
-
+	
 	/**
 	 * Config rendu JSON de l'API mise en place
 	 * http://localhost:8081/library/swagger-ui.html#/
@@ -50,7 +50,7 @@ public class AppliceApplication {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Library Spring Boot REST API Documentation")
-				.description("REST APIs For Managing Books loans in a Library")
+				.description("REST APIs For Managing Application CE Database")
 				.contact(new Contact("Sami CHABBOUH", "https://gmail.com/", "chabbouh.sami@gmail.com")).version("1.0")
 				.build();
 	}

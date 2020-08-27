@@ -1,5 +1,7 @@
 package com.ettawil.applice.service;
 
+import java.util.List;
+
 import com.ettawil.applice.model.entity.rg.RenseignementsGeneraux;
 
 public interface IRenseignementsGenerauxService {
@@ -8,7 +10,7 @@ public interface IRenseignementsGenerauxService {
 
 	public RenseignementsGeneraux updateRenseignementsGeneraux(RenseignementsGeneraux rg);
 
-	public RenseignementsGeneraux findRenseignementsGeneraux();
+	public List<RenseignementsGeneraux> findRenseignementsGeneraux();
 
 	public void deleteRenseignementGeneraux(RenseignementsGeneraux rg);
 }

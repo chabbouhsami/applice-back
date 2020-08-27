@@ -1,5 +1,7 @@
 package com.ettawil.applice.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,8 @@ public class RenseignementsGenerauxServiceImpl implements IRenseignementsGenerau
 	}
 
 	@Override
-	public RenseignementsGeneraux findRenseignementsGeneraux() {
-		return rgDao.findAll().get(0);
+	public List<RenseignementsGeneraux> findRenseignementsGeneraux() {
+		return rgDao.findAll();
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class LoginRestController {
 
 
 	@CrossOrigin
-	@PostMapping("")
+	@PostMapping("/")
 	@ApiOperation(value = "Get User's auhentication", response = UserDTO.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "User not found"),
 			@ApiResponse(code = 304, message = "User unsuccesully deleted") })
@@ -44,7 +44,7 @@ public class LoginRestController {
 			return new ResponseEntity<UserDTO>(HttpStatus.NOT_FOUND);
 		}
 
-		if (!userDTORequest.getPassword().contentEquals(user.getPassword())) {
+		if (!userDTORequest.getPassword().equals(user.getPassword())) {
 			return new ResponseEntity<UserDTO>(HttpStatus.UNAUTHORIZED);
 		}
 		return new ResponseEntity<UserDTO>(mapUserToUserDTO(user), HttpStatus.OK);

@@ -43,7 +43,7 @@ public class SalarieEnfant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "SAL_ENF_ENF_COD", nullable = false)
+	@Column(name = "SAL_ENF_COD", nullable = false)
 	public int getCode() {
 		return code;
 	}

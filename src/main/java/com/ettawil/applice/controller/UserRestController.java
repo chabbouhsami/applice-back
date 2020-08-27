@@ -1,5 +1,6 @@
 package com.ettawil.applice.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,9 +64,10 @@ public class UserRestController {
 
 		if (!CollectionUtils.isEmpty(users)) {
 
-			List<UserDTO> usersDto = users.stream().map(user -> {
-				return mapUserToUserDTO(user);
-			}).collect(Collectors.toList());
+			List<UserDTO> usersDto = users.stream()
+					.sorted(Comparator.comparing(User::getFirstName).thenComparing(User::getLastName)).map(user -> {
+						return mapUserToUserDTO(user);
+					}).collect(Collectors.toList());
 			return new ResponseEntity<List<UserDTO>>(usersDto, HttpStatus.OK);
 		}
 		return new ResponseEntity<List<UserDTO>>(HttpStatus.NO_CONTENT);
@@ -124,7 +126,7 @@ public class UserRestController {
 		userService.deleteUser(user.get());
 		return new ResponseEntity<UserDTO>(mapUserToUserDTO(user.get()), HttpStatus.OK);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/")
 	@ApiOperation(value = "Get User's auhentication", response = UserDTO.class)
@@ -139,8 +141,6 @@ public class UserRestController {
 		userService.deleteUser(user.get());
 		return new ResponseEntity<UserDTO>(mapUserToUserDTO(user.get()), HttpStatus.OK);
 	}
-	
-		
 
 	private User mapUserDTOToUser(UserDTO userDto) {
 		ModelMapper mapper = new ModelMapper();
