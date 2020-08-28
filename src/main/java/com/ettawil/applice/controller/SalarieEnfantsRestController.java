@@ -1,5 +1,6 @@
 package com.ettawil.applice.controller;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/rest/api/salarie/enfants")
+@RequestMapping("/rest/api/enfants")
 @Api(value = "SalarieEnfant Rest Controller: contains all operations for managing salarieEnfants")
 public class SalarieEnfantsRestController {
 
@@ -56,6 +57,21 @@ public class SalarieEnfantsRestController {
 			return new ResponseEntity<>(salarieEnfantDto, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@CrossOrigin
+	@GetMapping("/salarie/{id}")
+	@ApiOperation(value = "Search the salarieEnfant by code", response = SalarieEnfantDTO.class)
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "Not Found: the salarieEnfant doesn't exist") })
+	public ResponseEntity<List<SalarieEnfantDTO>> searchSalarieEnfantByParentCode(@PathVariable int id) {
+		List<SalarieEnfant> salarieEnfant = salarieEnfantService.findAllByParent(id);
+		if (!salarieEnfant.isEmpty()) {
+			List<SalarieEnfantDTO> salarieEnfantDto = salarieEnfant.stream().map(enfant -> {
+				return mapSalarieEnfantToSalarieEnfantDTO(enfant);
+			}).collect(Collectors.toList());
+			return new ResponseEntity<>(salarieEnfantDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ArrayList<SalarieEnfantDTO>(), HttpStatus.NO_CONTENT);
 	}
 
 	@CrossOrigin

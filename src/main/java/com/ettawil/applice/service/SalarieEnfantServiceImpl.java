@@ -47,5 +47,9 @@ public class SalarieEnfantServiceImpl implements ISalarieEnfantService {
 	public List<SalarieEnfant> findAll() {
 		return salarieEnfantDao.findAll();
 	}
+	
+	public List<SalarieEnfant> findAllByParent(int code){
+		return salarieEnfantDao.findAllBySalarieCode(code);
+	}
 
 }
