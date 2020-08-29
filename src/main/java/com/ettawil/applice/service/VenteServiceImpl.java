@@ -37,6 +37,10 @@ public class VenteServiceImpl implements IVenteService {
 	public Vente findVente(int vente) {
 		return venteDao.getOne(vente);
 	}
+	
+	public List<Vente> findBySalarie(int code){
+		return venteDao.findBySalarieCodeOrderByDateDesc(code);
+	}
 
 	@Override
 	public boolean checkIfExist(Vente vente) {

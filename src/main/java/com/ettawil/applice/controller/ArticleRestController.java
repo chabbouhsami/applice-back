@@ -68,7 +68,7 @@ public class ArticleRestController {
 			}).collect(Collectors.toList());
 			return new ResponseEntity<List<ArticleDTO>>(articleDto, HttpStatus.OK);
 		}
-		return new ResponseEntity<List<ArticleDTO>>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<List<ArticleDTO>>(HttpStatus.OK);
 
 	}
 
@@ -88,7 +88,7 @@ public class ArticleRestController {
 					}).collect(Collectors.toList());
 			return new ResponseEntity<List<ArticleDTO>>(articleDto, HttpStatus.OK);
 		}
-		return new ResponseEntity<List<ArticleDTO>>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<List<ArticleDTO>>(HttpStatus.OK);
 
 	}
 

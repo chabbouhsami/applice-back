@@ -165,7 +165,7 @@ public class Vente {
 		this.subvention = subvention;
 	}
 
-	@Column(name = "VTE_COM", nullable = false)
+	@Column(name = "VTE_COM", nullable = true)
 	public String getCommentaire() {
 		return commentaire;
 	}
