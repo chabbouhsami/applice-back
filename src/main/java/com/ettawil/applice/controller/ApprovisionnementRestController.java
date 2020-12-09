@@ -48,7 +48,7 @@ public class ApprovisionnementRestController {
 			if (rgResponse.getArticle()!=null) {
 				System.out.println("toto");
 				if (rgResponse.getArticle().getLibelle()!="") {
-											System.out.println("tata");
+					System.out.println("tata");
 
 					if("".equals(rgResponse.getCommentaire())) {
 						
