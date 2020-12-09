@@ -52,7 +52,7 @@ public class ApprovisionnementRestController {
 
 					if("".equals(rgResponse.getCommentaire())) {
 						
-						System.out.println("tata");
+						System.out.println("titi");
 					}
 					
 				}
