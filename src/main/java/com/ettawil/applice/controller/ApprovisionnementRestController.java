@@ -45,6 +45,13 @@ public class ApprovisionnementRestController {
 		Approvisionnement rgResponse = service
 				.saveApprovisionnement(mapApprovisionnementDTOToApprovisionnement(approvisionnementDTORequest));
 		if (rgResponse != null) {
+			if (rgResponse.getArticle()!=null) {
+				System.out.println("toto");
+				if (rgResponse.getArticle().getLibelle()!="") {
+					System.out.println("tata");
+					
+				}
+			}
 			ApprovisionnementDTO rgDTO = mapApprovisionnementToApprovisionnementDTO(rgResponse);
 			return new ResponseEntity<ApprovisionnementDTO>(rgDTO, HttpStatus.CREATED);
 		}
